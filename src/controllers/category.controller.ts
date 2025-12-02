@@ -18,7 +18,7 @@ const getCategoryById = async (req: Request, res: Response) => {
   }
 };
 
-const getAllCategory = async (req: Request, res: Response) => {
+const listAllCategories = async (req: Request, res: Response) => {
   try {
     const data = await categoryServices.getAllCategory();
     ResponseHelper.success(res, data, "Kategoriler başarıyla getirildi");
@@ -79,7 +79,7 @@ const deleteCategory = async (req: Request, res: Response) => {
 
 export default {
   getCategoryById,
-  getAllCategory,
+  listAllCategories,
   createCategory,
   updateCategory,
   deleteCategory,

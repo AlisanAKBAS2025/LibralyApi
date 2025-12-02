@@ -18,9 +18,9 @@ const getAuthorById = async (req: Request, res: Response) => {
   }
 };
 
-const listAllAuthor = async (req: Request, res: Response) => {
+const listAllAuthors = async (req: Request, res: Response) => {
   try {
-    const data = await autorService.ListAllAuthor();
+    const data = await autorService.listAllAuthors();
     ResponseHelper.success(res, data, "Yazarlar başarıyla getirildi");
   } catch (error) {
     ResponseHelper.error(res, "Yazarlar getirilirken hata oluştu", 500, error);
@@ -64,7 +64,7 @@ const deleteAuthor = async (req: Request, res: Response) => {
 
 export default {
   getAuthorById,
-  listAllAuthor,
+  listAllAuthors,
   createAuthor,
   updateAuthor,
   deleteAuthor,

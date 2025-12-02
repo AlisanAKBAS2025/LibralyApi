@@ -5,11 +5,21 @@ class CategoryRepository {
   async getAllCategory(): Promise<Category[]> {
     return await prisma.category.findMany({
       orderBy: { name: "desc" },
+      include: {
+        booksCategories: {
+          include: { book: true },
+        },
+      },
     });
   }
   async getCategoryById(id: number): Promise<Category | null> {
     return await prisma.category.findFirst({
       where: { id: id },
+      include: {
+        booksCategories: {
+          include: { book: true },
+        },
+      },
     });
   }
   async createCategory(data: Prisma.CategoryCreateInput): Promise<Category> {

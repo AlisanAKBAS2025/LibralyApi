@@ -5,7 +5,7 @@ class AuthorServices {
   async getAuthorById(id: number): Promise<Author | null> {
     return await authorRepository.findById(id);
   }
-  async ListAllAuthor(): Promise<Author[]> {
+  async listAllAuthors(): Promise<Author[]> {
     return await authorRepository.allList();
   }
   async createAuthor(data: Prisma.AuthorCreateInput): Promise<Author> {

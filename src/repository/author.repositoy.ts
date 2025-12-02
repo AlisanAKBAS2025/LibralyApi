@@ -5,16 +5,23 @@ class AuthorRepository {
   async findById(id: number): Promise<Author | null> {
     return await prisma.author.findFirst({
       where: { id: id },
+      include: {
+        books: true,
+      },
     });
   }
   async allList(): Promise<Author[]> {
-    return await prisma.author.findMany();
+    return await prisma.author.findMany({
+      include: {
+        books: true,
+      },
+    });
   }
   async createAuthor(data: Prisma.AuthorCreateInput): Promise<Author> {
     return await prisma.author.create({ data });
   }
   async updateAuthor(
-    data: Prisma.BookUpdateInput,
+    data: Prisma.AuthorUpdateInput,
     id: number
   ): Promise<Author> {
     return await prisma.author.update({

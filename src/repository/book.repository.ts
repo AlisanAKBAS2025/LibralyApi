@@ -5,6 +5,12 @@ class BookRepository {
   async findAll(): Promise<Book[]> {
     const books = await prisma.book.findMany({
       orderBy: { createdAt: "desc" },
+      include: {
+        author: true,
+        booksCategories: {
+          include: { category: true },
+        },
+      },
     });
 
     return books;
@@ -12,6 +18,12 @@ class BookRepository {
   async findById(id: number): Promise<Book | null> {
     return await prisma.book.findFirst({
       where: { id: id },
+      include: {
+        author: true,
+        booksCategories: {
+          include: { category: true },
+        },
+      },
     });
   }
   async create(data: Prisma.BookCreateInput): Promise<Book> {
